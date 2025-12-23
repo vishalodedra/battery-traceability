@@ -40,6 +40,9 @@ const upload = multer({
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://mongo:27017/batterytraceability', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  writeConcern: {
+    w: 'majority'
+  }
 });
 
 const db = mongoose.connection;

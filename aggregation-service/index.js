@@ -3,7 +3,14 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 const axios = require('axios');
 
-mongoose.connect(process.env.MONGO_URI + '/aggregation-db')
+mongoose.connect(process.env.MONGO_URI || 'mongodb://mongo:27017/aggregation-db', {
+    // Additional options for compatibility
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    writeConcern: {
+        w: 'majority'
+    }
+})
     .then(() => console.log("Aggregation DB connected"))
     .catch(err => console.error(err));
 
