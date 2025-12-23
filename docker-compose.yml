@@ -1,0 +1,102 @@
+services:
+  mongo:
+    image: mongo:6
+    container_name: mongo
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    ports:
+      - "27018:27017"
+    healthcheck:
+      test: [ "CMD-SHELL", "mongosh --eval 'db.adminCommand(\"ping\")' || exit 1" ]
+      interval: 10s
+      timeout: 30s
+      retries: 20
+
+  serialization:
+    build:
+      context: .
+      dockerfile: serialization-service/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - "${PORT_SERIALIZATION}:3001"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  barcode:
+    build:
+      context: .
+      dockerfile: barcode-service/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - "${PORT_BARCODE}:3002"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - barcode-images:/app/images
+
+  inspection:
+    build:
+      context: .
+      dockerfile: inspection-service/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - "${PORT_INSPECTION}:3003"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  aggregation:
+    build:
+      context: .
+      dockerfile: aggregation-service/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - "${PORT_AGGREGATION}:3004"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  integration:
+    build:
+      context: .
+      dockerfile: integration-service/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - "${PORT_INTEGRATION}:3005"
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  epcis:
+    build:
+      context: .
+      dockerfile: epcis-service/Dockerfile
+    env_file:
+      - .env
+    restart: unless-stopped
+    ports:
+      - "${PORT_EPCIS:-3008}:3008"
+    depends_on:
+      mongo:
+        condition: service_healthy
+    volumes:
+      - ./epcis.json:/app/epcis.json
+      - epcis-uploads:/app/uploads
+
+volumes:
+  mongo-data:
+  barcode-images:
+  epcis-uploads:

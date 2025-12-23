@@ -1,0 +1,171 @@
+{
+	"EPCISDocument": {
+		"EPCISHeader": {
+			"StandardBusinessDocumentHeader": {
+				"HeaderVersion": {
+					"__prefix": "sbdh",
+					"__text": "1.0"
+				},
+				"Sender": {
+					"Identifier": {
+						"_Authority": "GS1",
+						"__prefix": "sbdh",
+						"__text": "GLN:2014121506066"
+					},
+					"__prefix": "sbdh"
+				},
+				"Receiver": {
+					"Identifier": {
+						"_Authority": "GS1",
+						"__prefix": "sbdh",
+						"__text": "GLN:0489903104013"
+					},
+					"__prefix": "sbdh"
+				},
+				"DocumentIdentification": {
+					"Standard": {
+						"__prefix": "sbdh",
+						"__text": "EPCglobal"
+					},
+					"TypeVersion": {
+						"__prefix": "sbdh",
+						"__text": "2.0"
+					},
+					"InstanceIdentifier": {
+						"__prefix": "sbdh",
+						"__text": "InstanceID346"
+					},
+					"Type": {
+						"__prefix": "sbdh",
+						"__text": "Events"
+					},
+					"CreationDateAndTime": {
+						"__prefix": "sbdh",
+						"__text": "2022-04-08T08:30:21Z"
+					},
+					"__prefix": "sbdh"
+				},
+				"__prefix": "sbdh"
+			}
+		},
+		"EPCISBody": {
+			"EventList": {
+				"ObjectEvent": [
+					{
+						"epcList": {
+							"epc": [
+								"urn:epc:id:sgtin:864917916.5006.100000000561",
+								"urn:epc:id:sgtin:864917916.5006.100000000562",
+								"urn:epc:id:sgtin:864917916.5006.100000000563",
+								"urn:epc:id:sgtin:864917916.5006.100000000564",
+								"urn:epc:id:sgtin:864917916.5006.100000000565",
+								"urn:epc:id:sgtin:864917916.5006.100000000566",
+								"urn:epc:id:sgtin:864917916.5006.100000000567",
+								"urn:epc:id:sgtin:864917916.5006.100000000568",
+								"urn:epc:id:sgtin:864917916.5006.100000000569",
+								"urn:epc:id:sgtin:864917916.5006.100000000570",
+								"urn:epc:id:sgtin:864917916.5006.100000000571",
+								"urn:epc:id:sgtin:864917916.5006.100000000572",
+								"urn:epc:id:sgtin:864917916.5006.100000000573",
+								"urn:epc:id:sgtin:864917916.5006.100000000574",
+								"urn:epc:id:sgtin:864917916.5006.100000000575",
+								"urn:epc:id:sgtin:864917916.5006.100000000576",
+								"urn:epc:id:sgtin:864917916.5006.100000000577",
+								"urn:epc:id:sgtin:864917916.5006.100000000578",
+								"urn:epc:id:sgtin:864917916.5006.100000000579",
+								"urn:epc:id:sgtin:864917916.5006.100000000580"
+							]
+						},
+						"extension": {
+							"ilmd": {
+								"lotNumber": {
+									"__prefix": "cbvmda",
+									"__text": "B6767"
+								},
+								"itemExpirationDate": {
+									"__prefix": "cbvmda",
+									"__text": "20228-12-19"
+								},
+								"itemProductionDate": {
+									"__prefix": "cbvmda",
+									"__text": "2025-12-20"
+								}
+							}
+						},
+						"SKU": "GTIN",
+						"packsize": "1"
+					},
+					{
+						"epcList": {
+							"epc": [
+								"urn:epc:id:sgtin:064917916.5006.200000000901",
+								"urn:epc:id:sgtin:064917916.5006.200000000902",
+								"urn:epc:id:sgtin:064917916.5006.200000000903",
+								"urn:epc:id:sgtin:064917916.5006.200000000904",
+								"urn:epc:id:sgtin:064917916.5006.200000000905",
+								"urn:epc:id:sgtin:064917916.5006.200000000906",
+								"urn:epc:id:sgtin:064917916.5006.200000000907",
+								"urn:epc:id:sgtin:064917916.5006.200000000908",
+								"urn:epc:id:sgtin:064917916.5006.200000000909",
+								"urn:epc:id:sgtin:064917916.5006.200000000910"
+							]
+						},
+						"extension": {
+							"ilmd": {
+								"lotNumber": {
+									"__prefix": "cbvmda",
+									"__text": "B6767"
+								},
+								"itemExpirationDate": {
+									"__prefix": "cbvmda",
+									"__text": "20228-12-19"
+								},
+								"itemProductionDate": {
+									"__prefix": "cbvmda",
+									"__text": "2025-12-20"
+								}
+							},
+							"packsize": "2",
+							"SKU": "GTIN"
+						}
+					},
+					{
+						"epcList": {
+							"epc": [
+								"urn:epc:id:sscc:0614141.1234567890",
+								"urn:epc:id:sscc:0614141.1234567891"
+							]
+						},
+						"extension": {
+							"ilmd": {
+								"lotNumber": {
+									"__prefix": "cbvmda",
+									"__text": "B6767"
+								},
+								"itemExpirationDate": {
+									"__prefix": "cbvmda",
+									"__text": "20228-12-19"
+								},
+								"itemProductionDate": {
+									"__prefix": "cbvmda",
+									"__text": "2025-12-20"
+								}
+							},
+							"packsize": "5",
+							"SKU": "GTIN"
+						}
+					}
+				]
+			}
+		},
+		"_xmlns:gs1ushc": "http://epcis.gs1us.org/hc/ns",
+		"_xmlns:sbdh": "http://www.unece.org/cefact/namespaces/StandardBusinessDocumentHeader",
+		"_xmlns:cbvmda": "urn:epcglobal:cbv:mda",
+		"_xmlns:epcis": "urn:epcglobal:epcis:xsd:1",
+		"_xmlns:xsi": "http://www.w3.org/2001/XMLSchema-instance",
+		"_schemaVersion": "1.2",
+		"_creationDate": "2022-04-08T08:30:21Z",
+		"_xsi:schemaLocation": "urn:epcglobal:epcis:xsd:1 file:///C:/workspace-git/maps_xml_schema/opus_schema/compliance/transaction/EPCIS-1_2/EPCglobal-epcis-1_2.xsd",
+		"__prefix": "epcis"
+	}
+}

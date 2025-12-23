@@ -1,0 +1,22 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent body scrolling when modal or mobile menu is open */
+body.mobile-menu-open {
+    overflow: hidden;
+}
+
+/* Ensure proper table scrolling containment */
+.table-container {
+    overflow-x: auto;
+    max-width: 100%;
+    overflow-y: visible;
+}
+
+
+
+/* Prevent horizontal scrolling on body when sidebar is fixed */
+body {
+    overflow-x: hidden;
+}
