@@ -101,7 +101,7 @@ app.post('/print', validateGS1, async (req, res) => {
             }
         }
 
-        res.json({ status: 'PRINTED', imageUrl: `http://localhost:3002/images/${barcode.imagePath}` });
+        res.json({ status: 'PRINTED', imageUrl: `https://barcode-4o85.onrender.com/${barcode.imagePath}` });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to generate barcode' });
@@ -134,13 +134,13 @@ app.get('/barcode/:serial', async (req, res) => {
             }
 
             return res.json({
-                imageUrl: `http://localhost:3002/images/${alternativeBarcode.imagePath}`,
+                imageUrl: `https://barcode-4o85.onrender.com/${alternativeBarcode.imagePath}`,
                 status: alternativeBarcode.status
             });
         }
 
         res.json({
-            imageUrl: `http://localhost:3002/images/${barcode.imagePath}`,
+            imageUrl: `https://barcode-4o85.onrender.com/${barcode.imagePath}`,
             status: barcode.status
         });
     } catch (err) {
@@ -170,7 +170,7 @@ app.get('/by-gs1', async (req, res) => {
         }
 
         res.json({
-            imageUrl: `http://localhost:3002/images/${barcode.imagePath}`,
+            imageUrl: `https://barcode-4o85.onrender.com/${barcode.imagePath}`,
             status: barcode.status
         });
     } catch (err) {
