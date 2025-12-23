@@ -3,14 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const { generateGS1 } = require('./shared/gs1-utils');
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://mongo:27017/serial-db', {
-    // Additional options for compatibility
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    writeConcern: {
-        w: 'majority'
-    }
-})
+mongoose.connect(process.env.MONGO_URI || 'mongodb://mongo:27017/serial-db')
     .then(() => console.log("Serialization DB connected"))
     .catch(err => console.error(err));
 

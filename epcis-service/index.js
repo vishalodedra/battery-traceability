@@ -37,13 +37,7 @@ const upload = multer({
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://mongo:27017/batterytraceability', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  writeConcern: {
-    w: 'majority'
-  }
-});
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://mongo:27017/batterytraceability');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));

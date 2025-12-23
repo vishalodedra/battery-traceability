@@ -6,14 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const axios = require('axios');
 
-mongoose.connect(process.env.MONGO_URI || 'mongodb://mongo:27017/barcode-db', {
-    // Additional options for compatibility
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-    writeConcern: {
-        w: 'majority'
-    }
-})
+mongoose.connect(process.env.MONGO_URI || 'mongodb://mongo:27017/barcode-db')
     .then(() => console.log("Barcode DB connected"))
     .catch(err => console.error(err));
 
