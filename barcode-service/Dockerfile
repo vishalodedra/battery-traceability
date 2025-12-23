@@ -2,8 +2,8 @@ FROM node:20-alpine
 WORKDIR /app
 COPY barcode-service/package*.json ./
 RUN npm install --production
-COPY barcode-service .
 COPY shared ./shared
+COPY barcode-service .
 RUN mkdir -p /app/images
 VOLUME /app/images
 EXPOSE 3002
