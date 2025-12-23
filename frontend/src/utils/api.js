@@ -1,12 +1,22 @@
 import axios from 'axios';
 
-// Base URLs for different services (using proxy paths)
+// Base URLs for different services (using proxy paths in development, actual URLs in production)
 const API_BASE_URLS = {
-    serialization: '/api/serialization',
-    barcode: '/api/barcode',
-    inspection: '/api/inspection',
-    aggregation: '/api/aggregation',
-    epcis: '/api/epcis'
+    serialization: process.env.NODE_ENV === 'development'
+        ? '/api/serialization'
+        : process.env.REACT_APP_SERIALIZATION_API_URL || 'https://battery-traceability.onrender.com',
+    barcode: process.env.NODE_ENV === 'development'
+        ? '/api/barcode'
+        : process.env.REACT_APP_BARCODE_API_URL || 'https://barcode-4o85.onrender.com',
+    inspection: process.env.NODE_ENV === 'development'
+        ? '/api/inspection'
+        : process.env.REACT_APP_INSPECTION_API_URL || 'https://inspection-zj0k.onrender.com',
+    aggregation: process.env.NODE_ENV === 'development'
+        ? '/api/aggregation'
+        : process.env.REACT_APP_AGGREGATION_API_URL || 'https://aggregation01.onrender.com',
+    epcis: process.env.NODE_ENV === 'development'
+        ? '/api/epcis'
+        : process.env.REACT_APP_EPCIS_API_URL || 'https://epics-l152.onrender.com'
 };
 
 // Create axios instances for each service
