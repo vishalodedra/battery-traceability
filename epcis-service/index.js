@@ -9,7 +9,11 @@ const app = express();
 const PORT = process.env.PORT_EPCIS || 3008;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.CORS_ORIGIN || '*', // In production, specify your frontend domain
+  credentials: true,
+  optionsSuccessStatus: 200
+}));
 app.use(express.json());
 
 // Multer configuration for file uploads

@@ -1,8 +1,17 @@
 const express = require('express');
+const cors = require('cors');
 const axios = require('axios');
 const { parseGS1 } = require('./shared/gs1-utils');
 
 const app = express();
+
+// CORS configuration to allow requests from frontend
+app.use(cors({
+    origin: process.env.CORS_ORIGIN || '*', // In production, specify your frontend domain
+    credentials: true,
+    optionsSuccessStatus: 200
+}));
+
 app.use(express.json());
 
 // Simple in-memory storage for inspection records (in production, this should be in a database)

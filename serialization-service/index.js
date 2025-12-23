@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const { generateGS1 } = require('./shared/gs1-utils');
 
 mongoose.connect(process.env.MONGO_URI + '/serial-db')
@@ -41,6 +42,14 @@ async function getNextSerialNumber() {
 }
 
 const app = express();
+
+// CORS configuration to allow requests from frontend
+app.use(cors({
+    origin: process.env.CORS_ORIGIN || '*', // In production, specify your frontend domain
+    credentials: true,
+    optionsSuccessStatus: 200
+}));
+
 app.use(express.json());
 
 function validateSerialRequest(req, res, next) {

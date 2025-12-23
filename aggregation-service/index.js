@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const axios = require('axios');
 
@@ -14,6 +15,14 @@ const AggregationSchema = new mongoose.Schema({
 const Aggregation = mongoose.model('Aggregation', AggregationSchema);
 
 const app = express();
+
+// CORS configuration to allow requests from frontend
+app.use(cors({
+    origin: process.env.CORS_ORIGIN || '*', // In production, specify your frontend domain
+    credentials: true,
+    optionsSuccessStatus: 200
+}));
+
 app.use(express.json());
 
 // Validation middleware

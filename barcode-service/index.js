@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const bwipjs = require('bwip-js');
 const fs = require('fs');
 const path = require('path');
@@ -18,6 +19,14 @@ const BarcodeSchema = new mongoose.Schema({
 const Barcode = mongoose.model('Barcode', BarcodeSchema);
 
 const app = express();
+
+// CORS configuration to allow requests from frontend
+app.use(cors({
+    origin: process.env.CORS_ORIGIN || '*', // In production, specify your frontend domain
+    credentials: true,
+    optionsSuccessStatus: 200
+}));
+
 app.use(express.json());
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
