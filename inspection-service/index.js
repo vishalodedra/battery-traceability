@@ -79,7 +79,7 @@ app.post('/scan', validateScanRequest, async (req, res) => {
             // Use environment variable for serialization service URL, fallback to internal Docker service name
             const serializationServiceUrl = process.env.SERIALIZATION_SERVICE_URL;
             // Call serialization service to validate serial number
-            const response = await axios.get(`${serializationServiceUrl}/validate/${serial}`);
+            const response = await axios.get(`${process.env.SERIALIZATION_SERVICE_URL}/validate/${serial}`);
 
             if (response.data.valid) {
                 serialRecord = {
@@ -122,7 +122,7 @@ app.post('/scan', validateScanRequest, async (req, res) => {
 
         // Update serial status to SCANNED in serialization service
         try {
-            await axios.patch(`${serializationServiceUrl}/status/${serial}`, {
+            await axios.patch(`${process.env.SERIALIZATION_SERVICE_URL}/status/${serial}`, {
                 status: 'SCANNED'
             });
         } catch (updateErr) {
