@@ -9,27 +9,27 @@ export default defineConfig({
         host: true,
         proxy: {
             '/api/serialization': {
-                target: 'http://localhost:3001',
+                target: 'https://battery-traceability.onrender.com',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api\/serialization/, '')
             },
             '/api/barcode': {
-                target: 'http://localhost:3002',
+                target: 'https://barcode-4o85.onrender.com',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api\/barcode/, '')
             },
             '/api/inspection': {
-                target: 'http://localhost:3003',
+                target: 'https://inspection-zj0k.onrender.com',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api\/inspection/, '')
             },
             '/api/aggregation': {
-                target: 'http://localhost:3004',
+                target: 'https://aggregation01.onrender.com',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api\/aggregation/, '')
             },
             '/api/epcis': {
-                target: 'http://localhost:3008',
+                target: 'https://epics-l152.onrender.com',
                 changeOrigin: true,
                 rewrite: (path) => path.replace(/^\/api\/epcis/, '')
             }
