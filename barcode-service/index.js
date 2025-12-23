@@ -92,7 +92,9 @@ app.post('/print', validateGS1, async (req, res) => {
             const serial = serialMatch[1];
             try {
                 // Update serial status to PRINTED
-                await axios.patch(`http://serialization:${process.env.PORT_SERIALIZATION || 3001}/status/${serial}`, {
+                // Use environment variable for serialization service URL, fallback to internal Docker service name
+                const serializationServiceUrl = process.env.SERIALIZATION_SERVICE_URL || `http://serialization:${process.env.PORT_SERIALIZATION || 3001}`;
+                await axios.patch(`${serializationServiceUrl}/status/${serial}`, {
                     status: 'PRINTED'
                 });
             } catch (updateErr) {
@@ -101,7 +103,7 @@ app.post('/print', validateGS1, async (req, res) => {
             }
         }
 
-        res.json({ status: 'PRINTED', imageUrl: `https://barcode-4o85.onrender.com/images/${barcode.imagePath}` });
+        res.json({ status: 'PRINTED', imageUrl: `${process.env.BARCODE_SERVICE_URL || `http://localhost:${process.env.PORT_BARCODE || 3002}`}/images/${barcode.imagePath}` });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'Failed to generate barcode' });
@@ -134,13 +136,13 @@ app.get('/barcode/:serial', async (req, res) => {
             }
 
             return res.json({
-                imageUrl: `https://barcode-4o85.onrender.com/images/${alternativeBarcode.imagePath}`,
+                imageUrl: `${process.env.BARCODE_SERVICE_URL || `http://localhost:${process.env.PORT_BARCODE || 3002}`}/images/${alternativeBarcode.imagePath}`,
                 status: alternativeBarcode.status
             });
         }
 
         res.json({
-            imageUrl: `https://barcode-4o85.onrender.com/images/${barcode.imagePath}`,
+            imageUrl: `${process.env.BARCODE_SERVICE_URL || `http://localhost:${process.env.PORT_BARCODE || 3002}`}/images/${barcode.imagePath}`,
             status: barcode.status
         });
     } catch (err) {
@@ -170,7 +172,7 @@ app.get('/by-gs1', async (req, res) => {
         }
 
         res.json({
-            imageUrl: `https://barcode-4o85.onrender.com/images/${barcode.imagePath}`,
+            imageUrl: `${process.env.BARCODE_SERVICE_URL || `http://localhost:${process.env.PORT_BARCODE || 3002}`}/images/${barcode.imagePath}`,
             status: barcode.status
         });
     } catch (err) {

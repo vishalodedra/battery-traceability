@@ -86,11 +86,13 @@ app.post('/aggregate', validateAggregationRequest, async (req, res) => {
             return res.status(409).json({ error: 'Carton ID already exists' });
         }
 
+        // Use environment variable for serialization service URL, fallback to internal Docker service name
+        const serializationServiceUrl = process.env.SERIALIZATION_SERVICE_URL || `http://serialization:${process.env.PORT_SERIALIZATION || 3001}`;
         // Validate that all serial numbers exist in serialization service
         const validationResults = [];
         for (const serial of serials) {
             try {
-                const response = await axios.get(`http://serialization:${process.env.PORT_SERIALIZATION || 3001}/validate/${serial}`);
+                const response = await axios.get(`${serializationServiceUrl}/validate/${serial}`);
                 if (!response.data.valid) {
                     return res.status(400).json({ error: `Serial ${serial} does not exist` });
                 }
